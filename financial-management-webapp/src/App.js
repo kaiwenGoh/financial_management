@@ -5,6 +5,7 @@ import HomePage from './HomePage';
 import AboutPage from './AboutPage';
 import BudgetAnalysisPage from './BudgetAnalysis';
 import ExpenseTrackingPage from './ExpenseTracking';
+import BudgetOutputPage from './BudgetOutput';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/BudgetAnalysis" element={<BudgetAnalysisPage />} />
         <Route path="/ExpenseTracking" element={<ExpenseTrackingPage />} />
+        <Route path="/BudgetOutput" element={<BudgetOutputPage />} />
       </Routes>
     </Router>
   );
