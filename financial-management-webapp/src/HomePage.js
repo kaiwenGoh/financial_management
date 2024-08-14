@@ -1,23 +1,17 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-function Button({ value }) {
-    const navigate = useNavigate();
-    function handleClick() {
-        navigate(`/${value}`);
-    }
-    return <button className="square" onClick={handleClick}>{value}</button>;
-  }
+import Button from './components/HomeButton'
+import Header from './components/Header';
 
 function HomePage() {
-  return (
+  return ( 
     <div>
-      <>
-        <div className="main_page">
-          <Button value = "ExpenseTracking"/>
-          <Button value = "BudgetAnalysis"/>
-        </div>
-      </>
+      <Header/>
+      <div class="relative flex min-h-screen items-center justify-center gap-x-4 overflow-hidden py-6 sm:py-12">
+          <Button value = "Expense Tracking"/>
+          <Button value = "Budget Analysis"/>
+      </div>
     </div>
+
   );
 }
 

@@ -1,9 +1,10 @@
 import React from 'react';
+import Header from './components/Header';
 
 function ExpenseTrackingPage() {
   return (
     <div>
-      <h1>Expense Tracking Page</h1>
+      <Header/>
     </div>
   );
 }
