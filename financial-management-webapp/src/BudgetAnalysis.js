@@ -136,7 +136,7 @@ function BudgetAnalysisPage() {
                 <input 
                   type="submit" 
                   value="Submit" 
-                  className="button-class" 
+                  className="button-class hover:bg-gray-600" 
                 />
               </div>
             </form>

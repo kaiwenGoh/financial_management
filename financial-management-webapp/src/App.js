@@ -8,19 +8,21 @@ import ExpenseTrackingPage from './ExpenseTracking';
 import BudgetOutputPage from './BudgetOutput';
 import SignUpPage from './SignUp';
 import SignInPage from './SignIn';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/BudgetAnalysis" element={<BudgetAnalysisPage />} />
-        <Route path="/ExpenseTracking" element={<ExpenseTrackingPage />} />
-        <Route path="/BudgetOutput" element={<BudgetOutputPage />} />
-        <Route path="/SignUp" element={<SignUpPage/>}/>
-        <Route path="/SignIn" element={<SignInPage/>}/>
+        <Route path="/" element={<SignInPage />} />
+        <Route path="/SignUp" element={<SignUpPage />} />
+        <Route path="/HomePage" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+        <Route path="/AboutPage" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
+        <Route path="/BudgetAnalysis" element={<ProtectedRoute><BudgetAnalysisPage /></ProtectedRoute>} />
+        <Route path="/ExpenseTracking" element={<ProtectedRoute><ExpenseTrackingPage /></ProtectedRoute>} />
+        <Route path="/BudgetOutput" element={<ProtectedRoute><BudgetOutputPage /></ProtectedRoute>} />
       </Routes>
+
     </Router>
   );
 }

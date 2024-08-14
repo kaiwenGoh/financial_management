@@ -8,10 +8,19 @@ function SignInPage() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('Email:', email);
-        console.log('Password:', password);
-        // Here you would typically handle the sign-in logic
-        navigate('/dashboard');
+        
+        // Check if user exists and password is correct
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const user = users.find(u => u.email === email && u.password === password);
+
+        if (user) {
+            // Store the logged-in user's email in localStorage
+            localStorage.setItem('currentUser', email);
+            alert('Sign in successful!');
+            navigate('/HomePage');
+        } else {
+            alert('Invalid email or password!');
+        }
     };
 
     return (
@@ -59,7 +68,7 @@ function SignInPage() {
                     <div className="mt-6 pt-6 border-t border-gray-300">
                         <p className="text-center text-gray-700 mb-2">Don't have an account?</p>
                         <div className="flex justify-center">
-                            <Link to="/signup" className="button-class bg-gray-500 hover:bg-gray-600 text-center">
+                            <Link to="/SignUp" className="button-class bg-gray-500 hover:bg-gray-600 text-center">
                                 Sign Up
                             </Link>
                         </div>

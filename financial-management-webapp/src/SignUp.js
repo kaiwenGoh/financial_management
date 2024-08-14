@@ -13,10 +13,20 @@ function SignUpPage() {
             alert("Passwords don't match!");
             return;
         }
-        console.log('Email:', email);
-        console.log('Password:', password);
-        // Here you would typically handle the sign-up logic
-        navigate('/dashboard');
+        
+        // Check if user already exists
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        if (users.some(user => user.email === email)) {
+            alert('User with this email already exists!');
+            return;
+        }
+
+        // Add new user
+        users.push({ email, password });
+        localStorage.setItem('users', JSON.stringify(users));
+
+        alert('Sign up successful! Please sign in.');
+        navigate('/');
     };
 
     return (
@@ -77,7 +87,7 @@ function SignUpPage() {
                     <div className="mt-6 pt-6 border-t border-gray-300">
                         <p className="text-center text-gray-700 mb-2">Already have an account?</p>
                         <div className="flex justify-center">
-                            <Link to="/signin" className="button-class bg-gray-500 hover:bg-gray-600 text-center">
+                            <Link to="/" className="button-class bg-gray-500 hover:bg-gray-600 text-center">
                                 Sign In
                             </Link>
                         </div>
