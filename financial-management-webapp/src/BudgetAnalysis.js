@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from './components/Header';
-
+import axios from 'axios';
 
 function BudgetAnalysisPage() {
     const [income, setIncome] = useState('');
     const [savings, setSavings] = useState('');
     const [location, setLocation] = useState('');
     const [spendingCategories, setSpendingCategories] = useState([]);
+    const [response, setResponse] = useState('');
 
     const locationOptions = [
       { value: "victoria", label: "Victoria" },
@@ -42,23 +43,25 @@ function BudgetAnalysisPage() {
         );
       };
     const navigate = useNavigate();
-    const handleSubmit = (event) => {
-        if (spendingCategories.length === 0) {
-            alert('Please select at least one spending category.');
-            event.preventDefault();
-            return;
-        }
-
-    
-        event.preventDefault(); 
-
-        console.log('Income:', income);
-        console.log('Savings:', savings);
-        console.log('Location:', location);
-        console.log('Spending Categories:', spendingCategories);
-
-        navigate('/BudgetOutput');
-      };
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      if (spendingCategories.length === 0) {
+        alert('Please select at least one spending category.');
+        return;
+    }
+      try {
+          const result = await axios.post('http://localhost:3000/data', {
+            spendingCategories,
+            savings,
+            location,
+            income
+          });
+          setResponse(result.data);
+          navigate('/BudgetOutput', { state: { responseData: result.data } });
+      } catch (error) {
+          console.error('Error submitting data:', error);
+      }
+    };
     
       return (
         <div className='flex flex-col min-h-screen'>
@@ -97,10 +100,10 @@ function BudgetAnalysisPage() {
               <div className="mb-4">
                 <label htmlFor="location" className="block text-gray-700 font-bold mb-2">Location:</label>
                 <select 
-                  name="location" 
+                  type="string" 
                   id="location" 
                   value={location} 
-                  onChange={(e) => setLocation(e.target.value)} 
+                  onChange={(e) => e ? setLocation(e.target.value) : setLocation("Victoria")} 
                   required
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
      
@@ -137,6 +140,12 @@ function BudgetAnalysisPage() {
                 />
               </div>
             </form>
+            {response && (
+                <div>
+                    <h2>Response</h2>
+                    <pre>{JSON.stringify(response, null, 2)}</pre>
+                </div>
+            )}
           </div>
         </div>
         </div>

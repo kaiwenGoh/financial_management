@@ -12,7 +12,7 @@ const Header = () => {
             <ul className="flex space-x-6">
                 <li>
                 <NavLink 
-                    exact to="/" 
+                    to="/" 
                     className="nav-link"
                 >
                     Home

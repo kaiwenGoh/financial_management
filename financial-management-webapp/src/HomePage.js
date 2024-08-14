@@ -6,7 +6,7 @@ function HomePage() {
   return ( 
     <div>
       <Header/>
-      <div class="relative flex min-h-screen items-center justify-center gap-x-4 overflow-hidden py-6 sm:py-12">
+      <div className="relative flex min-h-screen items-center justify-center gap-x-4 overflow-hidden py-6 sm:py-12">
           <Button value = "Expense Tracking"/>
           <Button value = "Budget Analysis"/>
       </div>

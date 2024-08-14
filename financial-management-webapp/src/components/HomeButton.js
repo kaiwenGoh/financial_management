@@ -6,7 +6,7 @@ function Button({ value }) {
         const [fp, sp] = value.split(" ");
         navigate(`/${fp+sp}`);
     }
-    return <button class = "bg-white border border-gray-300 p-8 rounded-lg shadow-md w-full sm:max-w-md " onClick={handleClick}>{value}</button>;
+    return <button className = "bg-white border border-gray-300 p-8 rounded-lg shadow-md w-full sm:max-w-md " onClick={handleClick}>{value}</button>;
   }
 
 
