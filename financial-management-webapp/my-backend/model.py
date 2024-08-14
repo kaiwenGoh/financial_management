@@ -51,8 +51,8 @@ def train_and_save_model(data):
     to_predict = np.array([[income * 10000]])
 
     output = model.predict(to_predict)
-   
-    print(output)
+    arr_output = output.flatten().tolist()
+    print(arr_output,spending_categories)
 
 def main():
     # Read input data from command line argument

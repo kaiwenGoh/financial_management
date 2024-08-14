@@ -48,16 +48,20 @@ function BudgetAnalysisPage() {
       if (spendingCategories.length === 0) {
         alert('Please select at least one spending category.');
         return;
-    }
+    } 
       try {
+        
           const result = await axios.post('http://localhost:3000/data', {
             spendingCategories,
             savings,
             location,
             income
           });
+
           setResponse(result.data);
+          
           navigate('/BudgetOutput', { state: { responseData: result.data } });
+          
       } catch (error) {
           console.error('Error submitting data:', error);
       }

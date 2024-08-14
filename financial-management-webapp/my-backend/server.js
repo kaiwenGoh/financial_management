@@ -38,7 +38,7 @@ app.post('/data', (req, res) => {
             return res.status(500).json({ message: 'Failed to train model', error: error.message });
         }
         console.log('Script output:', stdout);
-        
+        res.json({ message: 'Model trained and saved successfully', scriptOutput: stdout });
     });
 });
 
