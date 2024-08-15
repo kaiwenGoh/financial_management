@@ -1,5 +1,6 @@
 import React from 'react';
-import { json, useLocation } from 'react-router-dom';
+import { json, useLocation, useNavigate } from 'react-router-dom';
+import Header from './components/Header';
 
 function BudgetOutput() {
     const location = useLocation();
@@ -7,6 +8,7 @@ function BudgetOutput() {
     const parts = responseData.scriptOutput.split('] [');
     const arr = JSON.parse(parts[0] + ']');
     const arrcategory = JSON.parse('[' + parts[1]);
+    const navigate = useNavigate();
 
     const categoriesDictionary = {
       '1': 'Groceries',
@@ -27,16 +29,28 @@ function BudgetOutput() {
   ));
 
   return (
+    <div className='flex flex-col min-h-screen'>
+          <Header/>
       <div className="flex flex-col items-center justify-center flex-grow sm:p-8 text-center">
         <div className="bg-white border border-gray-500 p-16 rounded-lg shadow-md w-full sm:max-w-md overflow-y-auto">
           <h1 className="text-2xl font-bold mb-4">Budget Output Page</h1>
           <div className="block text-gray-700 font-bold mb-2">After analysing, we found out that for the following categories,</div>
-          <div className="block text-gray-700 font-bold mb-2">you should try to spend the amount stated to reach your saving taget.</div>
+          <div className="block text-gray-700 font-bold mb-2">you should try to spend the amount stated to reach your saving target.</div>
           <br></br>
-          <p>{textItems}</p>
+          {textItems}
+          <div className="flex justify-center mt-4">
+            <button
+              type="button"
+              className="button-class hover:bg-gray-600 px-4 py-2 rounded"
+              onClick={() => navigate('/HomePage')}
+            >
+            Back to Home Page
+            </button>
           </div>
+        </div>
       </div>
-    );
+    </div>
+  );
 }
 
 export default BudgetOutput;
