@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { json, useLocation, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
+import axios from 'axios';
 
 function BudgetOutput() {
     const location = useLocation();
@@ -27,6 +28,29 @@ function BudgetOutput() {
           <strong>{categoriesDictionary[arrcategory[index]]}</strong>: AUD {(value / 10000).toFixed(2)}
       </div>
   ));
+
+  const saveAnalysis = async () => {
+    const user = localStorage.getItem('currentUser'); // Replace with the actual user ID
+ 
+    const categories = arr.map((value, index) => ({
+        category:categoriesDictionary[arrcategory[index]], // Category ID
+        amount: (value / 10000).toFixed(2) // Adjust based on your amount calculation
+    }));
+
+    try {
+        const response = await axios.post('http://localhost:3000/analysis', {
+            user,
+            categories
+        });
+        console.log('Analysis saved:', response.data);
+    } catch (error) {
+        console.error('Error saving analysis:', error);
+    }
+};
+
+  useEffect(() => {
+      saveAnalysis();
+  }, []);
 
   return (
     <div className='flex flex-col min-h-screen'>

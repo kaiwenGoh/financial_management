@@ -6,7 +6,7 @@ const User = require('../db/User');
 const Transaction = require('../db/Transaction')
 const app = express();
 const port = 3000;
-
+const Analysis = require('../db/Analysis')
 const path = require('path');
 const mongoose = require('mongoose');
 
@@ -110,12 +110,6 @@ app.post('/SignIn', async (req, res) => {
     }
 });
 
-  
-// app.post('/data', (req, res) => {
-//     console.log('Received data:', req.body); // Log data to terminal
-//     res.json({ message: 'Data received successfully', receivedData: req.body }); // Respond with data
-// });
-
 app.post('/data', (req, res) => {
     const userData = req.body; // This is the data you want to send to Python
 
@@ -138,6 +132,26 @@ app.post('/data', (req, res) => {
         res.json({ message: 'Model trained and saved successfully', scriptOutput: stdout });
     });
 });
+
+
+app.post('/analysis', async (req, res) => {
+    const { user, categories } = req.body;
+
+    try {
+        // Find the document with the specified user ID and update it, or create a new one if it doesn't exist
+        const result = await Analysis.findOneAndUpdate(
+            { user }, // Filter by user ID
+            { categories, updatedAt: new Date() }, // Update categories and timestamp
+            { new: true, upsert: true } // Return the updated document, and create a new one if it doesn't exist
+        );
+
+        res.status(201).json({ success: true, data: result });
+    } catch (error) {
+        console.error('Error saving analysis:', error);
+        res.status(500).json({ success: false, message: 'Server Error' });
+    }
+});
+
 
 
 app.listen(port, () => {

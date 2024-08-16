@@ -9,6 +9,7 @@ function BudgetAnalysisPage() {
     const [location, setLocation] = useState('');
     const [spendingCategories, setSpendingCategories] = useState([]);
     const [response, setResponse] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const locationOptions = [
       { value: "victoria", label: "Victoria" },
@@ -45,10 +46,12 @@ function BudgetAnalysisPage() {
     const navigate = useNavigate();
     const handleSubmit = async (event) => {
       event.preventDefault();
+      if (isSubmitting) return;
       if (spendingCategories.length === 0) {
         alert('Please select at least one spending category.');
         return;
     } 
+    setIsSubmitting(true);
       try {
         
           const result = await axios.post('http://localhost:3000/data', {
