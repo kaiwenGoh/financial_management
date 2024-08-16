@@ -14,12 +14,21 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     // Actions
-    function deleteTransaction(id) {
-        dispatch({
-            type: 'DELETE_TRANSACTION',
-            payload: id
-        })
-    }
+    const deleteTransaction = async (id) => {
+        try {
+            // Make a DELETE request to the backend
+            await axios.delete(`http://localhost:3000/transactions/${id}`);
+    
+            // If successful, update the state by dispatching the DELETE_TRANSACTION action
+            dispatch({
+                type: 'DELETE_TRANSACTION',
+                payload: id
+            });
+        } catch (err) {
+            console.error('Error deleting transaction:', err);
+        }
+    };
+    
 
     const getTransactions = async () => {
         try {
@@ -49,7 +58,7 @@ export const GlobalProvider = ({ children }) => {
             // Assuming you have some way to add this to your state
             dispatch({
                 type: 'ADD_TRANSACTION',
-                payload: response.data
+                payload: response.data.data
             });
         } catch (err) {
             console.error(err);

@@ -36,19 +36,18 @@ app.get('/transactions', async (req, res) => {
   
 app.delete('/transactions/:id', async (req, res) => {
     try {
-        const transaction = await Transaction.findById(req.params.id);
-
-        if (!transaction) {
-            return res.status(404).json({ success: false, message: 'Transaction not found' });
-        }
-
-        await transaction.remove();
-        res.status(200).json({ success: true, data: {} });
+      const transaction = await Transaction.findByIdAndDelete(req.params.id);
+  
+      if (!transaction) {
+        return res.status(404).json({ success: false, msg: 'Transaction not found' });
+      }
+  
+      res.status(200).json({ success: true, msg: 'Transaction deleted successfully' });
     } catch (err) {
-        console.error('Error deleting transaction:', err);
-        res.status(500).json({ success: false, message: 'Server Error' });
+      console.error(err);
+      res.status(500).json({ success: false, msg: 'Server Error' });
     }
-});
+  });
 
 
 app.post('/transactions', async (req, res) => {
