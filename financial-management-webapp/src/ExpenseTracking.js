@@ -22,7 +22,7 @@ function ExpenseTrackingPage() {
 
           <TransactionList />
 
-          <AddTransaction/>
+          <AddTransaction />
 
         </div>
       </div>

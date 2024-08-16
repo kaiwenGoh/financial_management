@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 
 function SignUpPage() {
     const [email, setEmail] = useState('');
@@ -7,27 +8,45 @@ function SignUpPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     if (password !== confirmPassword) {
+    //         alert("Passwords don't match!");
+    //         return;
+    //     }
+        
+    //     // Check if user already exists
+    //     const users = JSON.parse(localStorage.getItem('users')) || [];
+    //     if (users.some(user => user.email === email)) {
+    //         alert('User with this email already exists!');
+    //         return;
+    //     }
+
+    //     // Add new user
+    //     users.push({ email, password });
+    //     localStorage.setItem('users', JSON.stringify(users));
+
+    //     alert('Sign up successful! Please sign in.');
+    //     navigate('/');
+    // };
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (password !== confirmPassword) {
             alert("Passwords don't match!");
             return;
         }
-        
-        // Check if user already exists
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        if (users.some(user => user.email === email)) {
+
+        try {
+            const response = await axios.post('http://localhost:3000/SignUp', { email, password });
+            alert('Sign up successful! Please sign in.');
+            navigate('/');
+        } catch (error) {
+            console.log(error);
             alert('User with this email already exists!');
-            return;
         }
-
-        // Add new user
-        users.push({ email, password });
-        localStorage.setItem('users', JSON.stringify(users));
-
-        alert('Sign up successful! Please sign in.');
-        navigate('/');
     };
+
 
     return (
         <div className='flex flex-col min-h-screen'>

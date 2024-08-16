@@ -10,7 +10,7 @@ export const Transaction = ({ transaction }) => {
         <li className="text-gray-700 flex justify-between">
             {transaction.text} <span>{sign}${Math.abs(transaction.amount)}</span>
             <button onClick={() => {
-                deleteTransaction(transaction.id);
+                deleteTransaction(transaction._id);
             }} 
             className="text-red-500 ml-4">x</button>
         </li>

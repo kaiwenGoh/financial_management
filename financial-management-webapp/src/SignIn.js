@@ -1,27 +1,48 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 
 function SignInPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
         
-        // Check if user exists and password is correct
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const user = users.find(u => u.email === email && u.password === password);
+    //     // Check if user exists and password is correct
+    //     const users = JSON.parse(localStorage.getItem('users')) || [];
+    //     const user = users.find(u => u.email === email && u.password === password);
 
-        if (user) {
-            // Store the logged-in user's email in localStorage
-            localStorage.setItem('currentUser', email);
-            alert('Sign in successful!');
-            navigate('/HomePage');
-        } else {
+    //     if (user) {
+    //         // Store the logged-in user's email in localStorage
+    //         localStorage.setItem('currentUser', email);
+    //         alert('Sign in successful!');
+    //         navigate('/HomePage');
+    //     } else {
+    //         alert('Invalid email or password!');
+    //     }
+    // };
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const response = await axios.post('http://localhost:3000/SignIn', { email, password });
+            if (response.data.success) {
+                localStorage.setItem('currentUser', response.data.userId);
+                alert('Sign in successful!');
+                navigate('/HomePage');
+            } else {
+                alert('Invalid email or password!');
+            }
+        } catch (error) {
+            console.log(error)
             alert('Invalid email or password!');
         }
     };
+
 
     return (
         <div className='flex flex-col min-h-screen'>
