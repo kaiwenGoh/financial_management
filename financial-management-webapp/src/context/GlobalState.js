@@ -42,6 +42,19 @@ export const GlobalProvider = ({ children }) => {
             console.error('Error fetching transactions:', err);
         }
     };
+
+    const getAnalysis = async () => {
+        try {
+            const userId = localStorage.getItem('currentUser');
+            const response = await axios.get(`http://localhost:3000/analysis?user=${userId}`);
+            dispatch({
+                type: 'SET_ANALYSIS',
+                payload: response.data, // Dispatch transactions to state
+            });
+        } catch (err) {
+            console.error('Error fetching analysis:', err);
+        }
+    };
     
 
     const addTransaction = async (transaction) => {
@@ -67,9 +80,11 @@ export const GlobalProvider = ({ children }) => {
 
     return (<GlobalContext.Provider value={{
         transactions:state.transactions,
+        analysis:state.analysis,
         deleteTransaction,
         addTransaction,
-        getTransactions
+        getTransactions,
+        getAnalysis
     }}>
         {children}
     </GlobalContext.Provider>)

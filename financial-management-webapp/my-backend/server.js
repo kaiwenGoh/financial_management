@@ -33,6 +33,17 @@ app.get('/transactions', async (req, res) => {
     }
 });
 
+app.get('/analysis', async (req, res) => {
+    try {
+        const { user } = req.query; // Get user ID from the query string
+        const analysis = await Analysis.find({ user });
+        res.status(200).json(analysis);
+    } catch (err) {
+        console.error('Error fetching analysis:', err);
+        res.status(500).json({ success: false, message: 'Server Error' });
+    }
+});
+
 
   
 app.delete('/transactions/:id', async (req, res) => {

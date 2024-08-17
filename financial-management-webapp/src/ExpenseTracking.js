@@ -7,6 +7,7 @@ import { AddTransaction } from './components/AddTransaction';
 import { IncomeExpenses } from './components/IncomeExpenses';
 import { Balance } from './components/Balance';
 import { ChartComponent } from './components/Chart'
+import { Comparison } from './components/Comparison';
 
 function ExpenseTrackingPage() {
 
@@ -32,6 +33,7 @@ function ExpenseTrackingPage() {
         <div className="bg-white border border-gray-300 p-8 rounded-lg shadow-md w-full sm:max-w-md overflow-y-auto">
           <h2 className="text-xl font-bold mb-4">Comparison with Analysis</h2>
           {/* Add content for this section here */}
+          <Comparison/>
         </div>
       </div>
     </GlobalProvider>

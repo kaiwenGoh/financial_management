@@ -15,6 +15,11 @@ export default (state, action) => {
                 ...state,
                 transactions: action.payload
             }
+        case 'SET_ANALYSIS':
+            return{
+                ...state,
+                analysis: action.payload
+            }
         default:
             return state;
     }
