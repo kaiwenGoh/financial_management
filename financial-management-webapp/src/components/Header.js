@@ -14,7 +14,7 @@ const Header = () => {
     <header className="flex header">
       <div className="container mx-auto flex justify-between items-center px-6">
         <div className='flex items-center'>
-          <div className="leading-6 text-xl font-bold text-gray-800 mr-8">Elixir</div>
+          <div className="leading-6 text-xl font-bold text-gray-800 mr-8">KK Financial Management</div>
           <nav>
             <ul className="flex space-x-6">
               <li>
