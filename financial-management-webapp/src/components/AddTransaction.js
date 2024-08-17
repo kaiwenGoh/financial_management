@@ -20,6 +20,7 @@ export const AddTransaction = () => {
         addTransaction(newTransaction);
         setText('');
         setAmount(0);
+        setCategory("Select")
     }   
 
     const spendingCategoriesData = [

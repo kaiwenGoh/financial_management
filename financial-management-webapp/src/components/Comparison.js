@@ -77,7 +77,7 @@ export const Comparison = () => {
                         <div key={key} className="mb-2 p-4 border rounded-lg shadow-sm">
                             <h5 className="font-bold">{categoryName}</h5>
                             <p>Analyzed Budget: ${analyzedBudget.toFixed(2)}</p>
-                            <p>Actual Spent: ${actualSpent.toFixed(2)}</p>
+                            <p>Actual Spent: ${Math.abs(actualSpent).toFixed(2)}</p>
                         </div>
                     );
                 })
