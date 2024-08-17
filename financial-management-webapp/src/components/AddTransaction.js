@@ -32,6 +32,7 @@ export const AddTransaction = () => {
       { id: '7', label: 'Recreation' },
       { id: '8', label: 'Outside Food' },
       { id: '9', label: 'Miscellaneous' },
+      { id: '10', label: 'Income'}
     ];
 
     return (
@@ -67,7 +68,7 @@ export const AddTransaction = () => {
               </div>
 
               <div className="mb-4">
-                  <label htmlFor="spendingCategory" className="block text-gray-700 font-bold mb-2">Spending Category:</label>
+                  <label htmlFor="spendingCategory" className="block text-gray-700 font-bold mb-2">Category:</label>
                   <select 
                     id="spendingCategory" 
                     value={category} 
