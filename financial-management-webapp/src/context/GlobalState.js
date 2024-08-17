@@ -32,18 +32,17 @@ export const GlobalProvider = ({ children }) => {
 
     const getTransactions = async () => {
         try {
-            const userId = localStorage.getItem('currentUser'); // Retrieve the current user ID
-
+            const userId = localStorage.getItem('currentUser');
             const response = await axios.get(`http://localhost:3000/transactions?user=${userId}`);
             dispatch({
-                type: 'SET_TRANSACTIONS',
-                payload: response.data // Assuming your backend returns an array of transactions
+                type: 'SET_TRANSACTION',
+                payload: response.data, // Dispatch transactions to state
             });
         } catch (err) {
             console.error('Error fetching transactions:', err);
         }
     };
-
+    
 
     const addTransaction = async (transaction) => {
         try {

@@ -24,7 +24,7 @@ mongoose.connect('mongodb+srv://KevinG:gkw82bsd@financial-management.alzcrxd.mon
 
 app.get('/transactions', async (req, res) => {
     try {
-        const { user } = req.query; // Get the user ID from the query string
+        const { user } = req.query; // Get user ID from the query string
         const transactions = await Transaction.find({ user });
         res.status(200).json(transactions);
     } catch (err) {
@@ -32,6 +32,7 @@ app.get('/transactions', async (req, res) => {
         res.status(500).json({ success: false, message: 'Server Error' });
     }
 });
+
 
   
 app.delete('/transactions/:id', async (req, res) => {
