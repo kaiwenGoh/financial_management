@@ -6,6 +6,7 @@ import { TransactionList } from './components/TransactionList';
 import { AddTransaction } from './components/AddTransaction';
 import { IncomeExpenses } from './components/IncomeExpenses';
 import { Balance } from './components/Balance';
+import { ChartComponent } from './components/Chart'
 
 function ExpenseTrackingPage() {
 
@@ -16,7 +17,7 @@ function ExpenseTrackingPage() {
         {/* First Column */}
         <div className="bg-white border border-gray-300 p-8 rounded-lg shadow-md w-full sm:max-w-md overflow-y-auto">
           <h2 className="text-xl font-bold mb-4">Graph</h2>
-          
+          <ChartComponent />
         </div>
         {/* Second Column */}
         <div className="bg-white border border-gray-300 p-8 rounded-lg shadow-md w-full sm:max-w-md overflow-y-auto">
