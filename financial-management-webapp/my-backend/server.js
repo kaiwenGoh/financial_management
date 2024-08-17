@@ -9,6 +9,7 @@ const port = 3000;
 const Analysis = require('../db/Analysis')
 const path = require('path');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 // Enable CORS for all origins
 app.use(cors());
@@ -18,7 +19,7 @@ app.get('/', (req, res) => {
     res.send('Hello, world!');
 });
 
-mongoose.connect('mongodb+srv://KevinG:gkw82bsd@financial-management.alzcrxd.mongodb.net/?retryWrites=true&w=majority&appName=Financial-Management', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.log(err));
 
