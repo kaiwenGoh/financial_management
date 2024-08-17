@@ -60,7 +60,11 @@ export const AddTransaction = () => {
                   type="number" 
                   id="amount" 
                   value={amount} 
-                  onChange={(e) => setAmount(e.target.value)} 
+                  onChange={(e) => {setAmount(e.target.value);
+                    if (+e.target.value <= 0) {
+                      setCategory(prevCategory => prevCategory === 'Income' ? '' : prevCategory);
+                    }
+                  }}
                   required
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                   placeholder="Enter amount..."
@@ -78,7 +82,7 @@ export const AddTransaction = () => {
                   >
                     <option value="">Select a category...</option>
                     {spendingCategoriesData.map(category => (
-                      <option key={category.id} value={category.label} disabled={category.label !== 'Income' && +amount >= 0}>{category.label}</option>
+                      <option key={category.id} value={category.label} disabled={category.label === 'Income' ? +amount <= 0 : +amount > 0}>{category.label}</option>
                     ))}
                   </select>
               </div>
