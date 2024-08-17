@@ -67,7 +67,6 @@ export const Comparison = () => {
 
     return (
         <div className="mb-4">
-            <h4 className="block text-gray-700 font-bold mb-2">Comparison with Analysis</h4>
             {categories.length > 0 ? (
                 Object.keys(categoriesDictionary).map(key => {
                     const categoryName = categoriesDictionary[key];
@@ -86,7 +85,7 @@ export const Comparison = () => {
                 <p>You have no existing analysis.
                     <button
                         type="button"
-                        className="button-class hover:bg-gray-600 px-4 py-2 rounded"
+                        className="my-2 button-class hover:bg-gray-600 px-4 py-2 rounded"
                         onClick={() => navigate('/BudgetAnalysis')}
                     >
                         Create an Analysis

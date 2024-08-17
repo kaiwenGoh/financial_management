@@ -8,28 +8,6 @@ function SignUpPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     if (password !== confirmPassword) {
-    //         alert("Passwords don't match!");
-    //         return;
-    //     }
-        
-    //     // Check if user already exists
-    //     const users = JSON.parse(localStorage.getItem('users')) || [];
-    //     if (users.some(user => user.email === email)) {
-    //         alert('User with this email already exists!');
-    //         return;
-    //     }
-
-    //     // Add new user
-    //     users.push({ email, password });
-    //     localStorage.setItem('users', JSON.stringify(users));
-
-    //     alert('Sign up successful! Please sign in.');
-    //     navigate('/');
-    // };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (password !== confirmPassword) {

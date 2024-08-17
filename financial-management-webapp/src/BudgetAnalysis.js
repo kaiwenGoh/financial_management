@@ -71,7 +71,7 @@ function BudgetAnalysisPage() {
     };
     
       return (
-        <div className='flex flex-col min-h-screen'>
+        <div>
           <Header/>
           <div className="flex flex-col items-center justify-center flex-grow sm:p-8"> 
           <div className="bg-white border border-gray-300 p-8 rounded-lg shadow-md w-full sm:max-w-md overflow-y-auto">

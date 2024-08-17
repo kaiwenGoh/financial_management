@@ -7,24 +7,6 @@ function SignInPage() {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-        
-    //     // Check if user exists and password is correct
-    //     const users = JSON.parse(localStorage.getItem('users')) || [];
-    //     const user = users.find(u => u.email === email && u.password === password);
-
-    //     if (user) {
-    //         // Store the logged-in user's email in localStorage
-    //         localStorage.setItem('currentUser', email);
-    //         alert('Sign in successful!');
-    //         navigate('/HomePage');
-    //     } else {
-    //         alert('Invalid email or password!');
-    //     }
-    // };
-
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 

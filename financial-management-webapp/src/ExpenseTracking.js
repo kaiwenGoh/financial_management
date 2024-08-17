@@ -18,7 +18,7 @@ function ExpenseTrackingPage() {
       <div className="flex flex-row justify-center flex-grow sm:p-8 space-x-4">
         {/* First Column */}
         <div className="bg-white border border-gray-300 p-8 rounded-lg shadow-md w-full sm:max-w-md overflow-y-auto">
-          <h2 className="text-xl font-bold mb-4">Graph</h2>
+          <h2 className="text-2xl font-bold mb-4">Graph</h2>
           <ChartComponent />
           <div className='my-4'></div>
           <ChartComponent2 />
@@ -34,7 +34,7 @@ function ExpenseTrackingPage() {
         </div>
         {/* Third Column */}
         <div className="bg-white border border-gray-300 p-8 rounded-lg shadow-md w-full sm:max-w-md overflow-y-auto">
-          <h2 className="text-xl font-bold mb-4">Comparison with Analysis</h2>
+          <h2 className="text-2xl font-bold mb-4">Comparison with Analysis</h2>
           {/* Add content for this section here */}
           <Comparison/>
         </div>

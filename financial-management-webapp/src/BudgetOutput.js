@@ -54,7 +54,7 @@ function BudgetOutput() {
 
   return (
     <div className='flex flex-col min-h-screen'>
-          <Header/>
+      <Header/>
       <div className="flex flex-col items-center justify-center flex-grow sm:p-8 text-center">
         <div className="bg-white border border-gray-500 p-16 rounded-lg shadow-md w-full sm:max-w-md overflow-y-auto">
           <h1 className="text-2xl font-bold mb-4">Budget Output Page</h1>
