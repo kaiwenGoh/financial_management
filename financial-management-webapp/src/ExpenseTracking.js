@@ -8,6 +8,7 @@ import { IncomeExpenses } from './components/IncomeExpenses';
 import { Balance } from './components/Balance';
 import { ChartComponent } from './components/Chart'
 import { Comparison } from './components/Comparison';
+import { ChartComponent2 } from './components/PieChart';
 
 function ExpenseTrackingPage() {
 
@@ -19,6 +20,8 @@ function ExpenseTrackingPage() {
         <div className="bg-white border border-gray-300 p-8 rounded-lg shadow-md w-full sm:max-w-md overflow-y-auto">
           <h2 className="text-xl font-bold mb-4">Graph</h2>
           <ChartComponent />
+          <div className='my-4'></div>
+          <ChartComponent2 />
         </div>
         {/* Second Column */}
         <div className="bg-white border border-gray-300 p-8 rounded-lg shadow-md w-full sm:max-w-md overflow-y-auto">
