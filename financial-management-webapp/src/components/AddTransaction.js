@@ -36,7 +36,7 @@ export const AddTransaction = () => {
     ];
 
     return (
-        <div className="mb-4">
+        <div className="mb-4 form-control">
             <label className="block text-gray-700 font-bold mb-2">Add new transaction</label>
             <form onSubmit={onSubmit}>
               <div className="mb-4">
@@ -52,7 +52,7 @@ export const AddTransaction = () => {
                 />
               </div>
 
-              <div className="mb-4">
+              <div className="mb-4 form-control">
                 <label htmlFor="amount" className="block text-gray-700 font-bold mb-2">
                   Amount <br />(negative - expense, positive - income)
                 </label>
@@ -67,7 +67,7 @@ export const AddTransaction = () => {
                 />
               </div>
 
-              <div className="mb-4">
+              <div className="mb-4 form-control">
                   <label htmlFor="spendingCategory" className="block text-gray-700 font-bold mb-2">Category:</label>
                   <select 
                     id="spendingCategory" 
@@ -78,7 +78,7 @@ export const AddTransaction = () => {
                   >
                     <option value="">Select a category...</option>
                     {spendingCategoriesData.map(category => (
-                      <option key={category.id} value={category.label}>{category.label}</option>
+                      <option key={category.id} value={category.label} disabled={category.label !== 'Income' && +amount >= 0}>{category.label}</option>
                     ))}
                   </select>
               </div>
